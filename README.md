@@ -9,10 +9,11 @@ MacOS:
 ```
 brew install neovim
 brew install tmux
-reattach-to-user-namespace
+brew install reattach-to-user-namespace
 git clone https://github.com/nbwoodward/devfiles.git ~/devfiles
 cd devfiles
 ./mklinks.sh
+echo "source ~/.bashrc" >> ~/.profile
 ```
 
 Ubuntu:

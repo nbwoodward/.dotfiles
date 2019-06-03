@@ -208,9 +208,9 @@ function grek(){
 export NODE_ENV="development"
 
 #Not sure if this is needed.
-if [ -f /usr/libexec/java_home ]; then
-    export JAVA_HOME=$(/usr/libexec/java_home)
-fi
+#if [ -f /usr/libexec/java_home ]; then
+    #export JAVA_HOME=$(/usr/libexec/java_home)
+#fi
 
 #Automatically soruce .env files on OSX when you cd into a dir
 test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
