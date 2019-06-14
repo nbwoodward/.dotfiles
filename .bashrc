@@ -36,9 +36,8 @@ esac
 # off by default to not distract the user: the focus in a terminal window
 # should be on the output of commands, not on the prompt
 force_color_prompt=yes
-set current expanded window
 
-if [ -n "$force_color_prompt" ]; then
+if [ "$force_color_prompt" = yes ]; then
 
     color_prompt=yes
 
@@ -55,10 +54,33 @@ fi
 
 if [ "$color_prompt" = yes ]; then
     PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+
+    export TERM=xterm-color
+    export GREP_OPTIONS='--color=auto' GREP_COLOR='1;32'
+    export CLICOLOR=1
+    export LSCOLORS=ExFxCxDxBxegedabagacad
+
+    export COLOR_NC='\e[0m' # No Color
+    export COLOR_WHITE='\e[1;37m'
+    export COLOR_BLACK='\e[0;30m'
+    export COLOR_BLUE='\e[0;34m'
+    export COLOR_LIGHT_BLUE='\e[1;34m'
+    export COLOR_GREEN='\e[0;32m'
+    export COLOR_LIGHT_GREEN='\e[1;32m'
+    export COLOR_CYAN='\e[0;36m'
+    export COLOR_LIGHT_CYAN='\e[1;36m'
+    export COLOR_RED='\e[0;31m'
+    export COLOR_LIGHT_RED='\e[1;31m'
+    export COLOR_PURPLE='\e[0;35m'
+    export COLOR_LIGHT_PURPLE='\e[1;35m'
+    export COLOR_BROWN='\e[0;33m'
+    export COLOR_YELLOW='\e[1;33m'
+    export COLOR_GRAY='\e[0;30m'
+    export COLOR_LIGHT_GRAY='\e[0;37m'
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
-unset color_prompt force_color_prompt
+#unset color_prompt force_color_prompt
 
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
@@ -110,7 +132,8 @@ alias fullfperm="sudo find -type f -exec chmod 766  {} \;"
 alias fulldperm="sudo find -type d -exec chmod 777 {} \;"
 alias fullperm="sudo find -type f -exec chmod 766  {} \; ; sudo find -type d -exec chmod 777 {} \;"
 alias standard_perm="find . -type f -exec chmod 666 {} \; ; find -type d -exec chmod 755 {} \;"
-alias vb="vim ~/.bashrc"
+alias vb="nvim ~/.bashrc"
+alias vbl="nvim ~/.bashrc.local"
 alias sb="source ~/.bashrc"
 alias hosts="cat /etc/hosts"
 alias updatedb="sudo /usr/libexec/locate.updatedb"
@@ -187,7 +210,7 @@ if [[ $(uname -s) == Darwin ]]; then
 
     #color the ls output
     export LSCOLORS=ExgxcxdxfxegedabagExEx
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;30m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+    #PS1='${debian_chroot:+($debian_chroot)}\[\033[01;30m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
 fi
 
 

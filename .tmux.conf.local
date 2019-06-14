@@ -340,8 +340,11 @@ bind-key -T prefix = run-shell "cut -c3- ~/.tmux.conf | sh -s _maximize_pane "#{
 set -g window-style 'fg=colour252,bg=colour235'
 set -g window-active-style 'fg=colour15,bg=black'
 
+#Splitting
+bind | split-window -h
+bind \ split-window -h
 
 #LOAD OSX SPECIFIC:
 #
-if-shell "uname | grep -q Darwin" "source-file .tmux.conf.osx" #"source-file .tmux.conf.linux"
+if-shell "uname | grep -q Darwin" "source-file ~/.tmux.conf.osx" #"source-file ~/.tmux.conf.linux"
 
