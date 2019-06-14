@@ -343,5 +343,5 @@ set -g window-active-style 'fg=colour15,bg=black'
 
 #LOAD OSX SPECIFIC:
 #
-if-shell "uname | grep -q Darwin" "source-file .tmux.conf.osx" "source-file .tmux.conf.linux"
+if-shell "uname | grep -q Darwin" "source-file .tmux.conf.osx" #"source-file .tmux.conf.linux"
 
