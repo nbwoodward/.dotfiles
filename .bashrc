@@ -80,7 +80,7 @@ if [ "$color_prompt" = yes ]; then
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
-#unset color_prompt force_color_prompt
+unset color_prompt force_color_prompt
 
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
@@ -110,7 +110,7 @@ alias la='ls -A'
 alias l='ls -CF'
 alias ..='cd ..'
 alias ...='cd ../..'
-
+alias dev="cd ~/projects/dev"
 
 
 # enable programmable completion features (you don't need to enable
@@ -148,19 +148,17 @@ alias gg="git log --decorate --graph --pretty --all --pretty=oneline --abbrev-co
 alias gb="git branch"
 alias gd="git diff --cached"
 alias gdn="git diff --cached --name-only"
-
 alias gm="git merge -ff"
 alias gp="git pull -ff"
+alias gc="git commit -m"
+alias gs="git status"
+alias branch-clean="git fetch --prune && git branch -v | grep ' \[gone\] ' | awk '{ print $1 }' | xargs git branch -D"
 
 function ga() {
 	git add .
   git diff --cached
 }
 
-function gc() {
-	git checkout $1
-  git pull --ff-only
-}
 
 #Some OSX Postgres support
 alias pgstart="pg_ctl -D /usr/local/var/postgres -l /usr/local/var/postgres/server.log start"
@@ -234,11 +232,6 @@ function grek(){
 #Export default NODE_ENV
 export NODE_ENV="development"
 
-#Not sure if this is needed.
-#if [ -f /usr/libexec/java_home ]; then
-    #export JAVA_HOME=$(/usr/libexec/java_home)
-#fi
-
 #Automatically soruce .env files on OSX when you cd into a dir
 test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
 if [ -f /usr/local/opt/autoenv/activate.sh ]; then
@@ -252,3 +245,21 @@ fi
 if [ -f ~/.bashrc.local ]; then
     source ~/.bashrc.local
 fi
+
+alias listening='lsof -iTCP -sTCP:LISTEN -n -P'
+
+# Docker
+alias dc="docker-compose"
+
+# Go
+alias gocov="go test -tags=integration -coverprofile=/tmp/coverage.out ./... ; go tool cover -html=/tmp/coverage.out"
+[ -d ~/go/bin ] && export PATH="$PATH:~/go/bin"
+
+#Rg/FZF
+# --files: List files that would be searched but do not search
+# --no-ignore: Do not respect .gitignore, etc...
+# --hidden: Search hidden files and folders
+# --follow: Follow symlinks
+# --glob: Additional conditions for search (in this case ignore everything in the .git/ folder)
+export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
