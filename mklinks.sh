@@ -58,6 +58,7 @@ echo "source $HOME/.zshrc.local" >> $HOME/.zshrc
 
 echo '" Local Vimrc' >> $HOME/.vimrc.local
 cp nbw.zsh-theme $HOME/.oh-my-zsh/themes
+cp nbw.zsh-theme $HOME/.oh-my-zsh/themes/robbyrussell.zsh-theme
 
 source $HOME/.zshrc
 
