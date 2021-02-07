@@ -55,3 +55,10 @@ echo "# Local Zsh" >> $HOME/.zshrc.local
 
 echo "source $HOME/.zshrc.nick" >> $HOME/.zshrc
 echo "source $HOME/.zshrc.local" >> $HOME/.zshrc
+
+echo "# Local Vimrc" >> $HOME/.vimrc.local
+
+
+# Install TMUX
+git clone https://github.com/gpakosz/.tmux
+ln -s -f .tmux/.tmux.conf $HOME/.tmux.conf
