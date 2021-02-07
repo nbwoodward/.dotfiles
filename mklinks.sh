@@ -56,7 +56,10 @@ echo "# Local Zsh" >> $HOME/.zshrc.local
 echo "source $HOME/.zshrc.nick" >> $HOME/.zshrc
 echo "source $HOME/.zshrc.local" >> $HOME/.zshrc
 
-echo "# Local Vimrc" >> $HOME/.vimrc.local
+echo '" Local Vimrc' >> $HOME/.vimrc.local
+cp nbw.zsh-theme $HOME/.oh-my-zsh/themes
+
+source $HOME/.zshrc
 
 
 # Install TMUX
