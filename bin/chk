@@ -1,0 +1,23 @@
+#!/usr/local/bin/python3
+
+import subprocess
+import sys
+import os
+
+branch = ""
+
+if len(sys.argv) > 1:
+    branch = sys.argv[1]
+else:
+    branches = subprocess.check_output(['git', 'branch']).decode('utf-8')
+    branch_list = branches.replace("*","").strip().split("\n")
+    trimmed = [ x.strip() for x in branch_list ]
+    for i in range(0,len(trimmed)):
+        print(i, trimmed[i])
+
+    num = input("Switch to branch: ")
+
+    branch=trimmed[int(num)]
+
+cmd = "git checkout %s" % branch
+os.system(cmd)

@@ -1,0 +1,64 @@
+echo "be a good human"
+
+if [[ $TMUX_PANE ]]; then
+  # Sets the history file to be specific to the tmux pane.
+  HISTFILE=$HOME/.zsh_history_tmux/.zsh_history_tmux_${TMUX_PANE:1}
+
+  # Gets the index of the tmux pane (1, 2, etc. within the window)
+  TMUX_INDEX=$(tmux display -pt "${TMUX_PANE:?}" '#{pane_index}')
+fi
+
+
+# Aliases
+alias ll='ls -alhFp'
+alias lt='ls -hlatr'
+alias la='ls -A'
+alias l='ls -CF'
+alias ..='cd ..'
+alias ...='cd ../..'
+alias dev="cd ~/projects/dev"
+alias cp="cp -r"
+alias vb="nvim ~/.zshrc.nick"
+alias vbl="nvim ~/.zshrc.local"
+alias sb="source ~/.zshrc"
+alias hosts="cat /etc/hosts"
+alias pyserver="python -m SimpleHTTPServer 3333"
+
+# Git aliases
+alias ggb="git log --decorate --graph --pretty --pretty=short --abbrev-commit"
+alias ggl="git log --decorate --graph --pretty --all --pretty=short --abbrev-commit"
+alias gg="git log --decorate --graph --pretty --all --pretty=oneline --abbrev-commit -20"
+alias gb="git branch"
+alias gd="git diff --cached"
+alias gdn="git diff --cached --name-only"
+alias gm="git merge -ff"
+alias gp="git pull -ff"
+alias gc="git commit -m"
+alias gs="git status"
+alias chkb="git checkout -b"
+
+alias p3="python3"
+alias p2="python2.7"
+
+alias t="tmux a"
+alias tat="tmux a -t"
+
+alias listening='lsof -iTCP -sTCP:LISTEN -n -P'
+
+# Ignores searching through files in .gitignore
+# export FZF_DEFAULT_COMMAND='rg --files --hidden'
+export FZF_DEFAULT_COMMAND='rg --files --follow --no-ignore-vcs --hidden -g "!{node_modules/*,.git/*}"'
+source ~/.fzf.zsh
+bindkey -r '\ec' fzf-cd-widget
+
+reset-soft() {
+branch=`git rev-parse --abbrev-ref HEAD`
+
+git checkout $1
+git pull
+git checkout $branch
+git merge $1 -m "merge $1"
+git reset --soft $1
+}
+
+export PATH="$PATH:~/.dotfiles/bin"

@@ -1,0 +1,17 @@
+#!/usr/local/bin/python3
+
+import os
+import subprocess
+
+cwd = os.getcwd()
+git_root = subprocess.check_output(['git', 'rev-parse', '--show-toplevel']).decode('utf-8').strip()
+
+os.chdir(git_root)
+
+files = subprocess.check_output(['git', 'diff', '--name-only', 'HEAD']).decode('utf-8').strip().splitlines()
+for f in files:
+    cmd = "prettier --write %s" % f
+    os.system(cmd)
+
+os.chdir(cwd)
+

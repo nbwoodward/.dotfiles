@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #symlinks to go in home
-homefiles=(.tmux .tmux.conf .tmux.conf.local .tmux.conf.osx .tmux.conf.linux .vim .vimrc .bashrc )
+homefiles=(.tmux .tmux.conf .tmux.conf.local .tmux.conf.osx .tmux.conf.linux .vim .vimrc .bashrc .zshrc.nick)
 
 backup_dir=~/dev_bak
 
@@ -46,3 +46,12 @@ else
 fi
 
 ln -s ~/.dotfiles/.vim ~/.config/$f
+
+
+#Install oh my zsh
+sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+echo "# Local Zsh" >> $HOME/.zshrc.local
+
+echo "source $HOME/.zshrc.nick" >> $HOME/.zshrc
+echo "source $HOME/.zshrc.local" >> $HOME/.zshrc
