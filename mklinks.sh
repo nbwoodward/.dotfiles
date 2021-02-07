@@ -62,3 +62,11 @@ echo "# Local Vimrc" >> $HOME/.vimrc.local
 # Install TMUX
 git clone https://github.com/gpakosz/.tmux
 ln -s -f .tmux/.tmux.conf $HOME/.tmux.conf
+
+
+# Install FZF
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+~/.fzf/install
+
+# Install RG on OSX
+brew install ripgrep
