@@ -1,7 +1,6 @@
 # NBW ZSH THEME Based on Avit
 
-PROMPT='
-$(_user_host)${_current_dir}⎇ $(git_prompt_info)
+PROMPT='$(_user_host)${_current_dir}⎇ $(git_prompt_info)
 %{$fg[$CARETCOLOR]%}▶%{$resetcolor%} '
 
 
