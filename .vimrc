@@ -46,6 +46,7 @@ let NERDTreeAutoDeleteBuffer = 1
 let NERDTreeMinimalUI = 1
 let NERDTreeDirArrows = 1
 let g:NERDTreeWinPos = "right"
+let g:NERDTreeIgnore = ['^node_modules$']
 autocmd VimEnter *  wincmd p "when opening vim with a file, focuses on buffer
 autocmd VimEnter {}  wincmd p "when opening empty vim , focuses on nerdtree
 autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif "Not sure what this does
@@ -223,6 +224,9 @@ command! FF silent call FormatAll()
 
 " Runs formatter for specific file types
 function! Format()
+  " Save it first
+  execute ":w"
+
   if &ft =~ 'javascript'
     call Preserve("!prettier --write '%:p'")
   elseif &ft =~ 'vue'
@@ -230,6 +234,8 @@ function! Format()
   elseif &ft =~ 'elixir'
     call Preserve("!mix format '%:p'")
   endif
+
+  execute ":e"
 endfunction
 
 function! FormatAll()
@@ -348,7 +354,7 @@ nnoremap <leader>g :Gs<cr>
 command! Gd :Gdiff
 command! GD :Gdiff
 nnoremap <leader>gd :Gdiff<cr>
-nnoremap <leader>d :Gdiff<cr>
+nnoremap <leader>d :Gvdiffsplit<cr>
 nnoremap <leader>gs :Gs<cr>
 nnoremap <leader>s :Gs<cr>
 
