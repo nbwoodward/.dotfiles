@@ -22,7 +22,7 @@ alias vb="nvim ~/.zshrc.nick"
 alias vbl="nvim ~/.zshrc.local"
 alias sb="source ~/.zshrc"
 alias hosts="cat /etc/hosts"
-alias pyserver="python -m SimpleHTTPServer 3333"
+alias pyserver="python -m SimpleHTTPServer 5555"
 
 # Git aliases
 alias ggb="git log --decorate --graph --pretty --pretty=short --abbrev-commit"
@@ -51,15 +51,29 @@ export FZF_DEFAULT_COMMAND='rg --files --follow --no-ignore-vcs --hidden -g "!{n
 source ~/.fzf.zsh
 bindkey -r '\ec' fzf-cd-widget
 
-reset-soft() {
-branch=`git rev-parse --abbrev-ref HEAD`
+function reset-soft() {
+  branch=`git rev-parse --abbrev-ref HEAD`
 
-git checkout $1
-git pull
-git checkout $branch
-git merge $1 -m "merge $1"
-git reset --soft $1
+  git checkout $1
+  git pull
+  git checkout $branch
+  git merge $1 -m "merge $1"
+  git reset --soft $1
 }
+
+function mf() {
+    GIT_ROOT="$(git rev-parse --show-toplevel)"
+    echo "...formatting ${GIT_ROOT}"
+
+    if [ -f "${GIT_ROOT}/mix.exs" ]; then
+      cd "${GIT_ROOT}" && mix format && cd - > /dev/null
+    elif [ -f "${GIT_ROOT}/package.json" ]; then
+      cd $GIT_ROOT && prettier --write `git diff --name-only --diff-filter=MA HEAD`
+    else
+      echo "Unable to determine project type"
+    fi
+}
+
 
 export PATH="$PATH:~/.dotfiles/bin"
 

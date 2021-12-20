@@ -347,16 +347,10 @@ set focus-events on
 #bind | split-window -h
 #bind \ split-window -h
 
+set -w window-style 'fg=colour252,bg=colour235'
+set -w window-active-style 'fg=colour15,bg=black'
+
 #LOAD OSX SPECIFIC:
 #
 if-shell "uname | grep -q Darwin" "source-file ~/.tmux.conf.osx"
 #"source-file ~/.tmux.conf.linux"
-
-
-set -g window-style 'fg=colour252,bg=colour235'
-set -g window-active-style 'fg=colour15,bg=black'
-
-# THIS SHOULD FIX THE BLACK AND BLUE ISSUE. WTF. UPDATE 12/24/2019 - Turned off for ZSH
-#set -g default-terminal 'tmux-256color' # replace this with your custom term-info name
-#set -ga terminal-overrides ',*:Tc' # this is for 256 color
-#set -ga terminal-overrides '*:Ss=\E[%p1%d q:Se=\E[ q' # this is for the cursor shape
