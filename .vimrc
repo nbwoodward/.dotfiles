@@ -18,9 +18,9 @@ Plug 'jistr/vim-nerdtree-tabs'
 Plug 'majutsushi/tagbar'
 Plug 'jpalardy/vim-slime'
 Plug 'tpope/vim-sleuth'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'elixir-editors/vim-elixir'
 Plug 'mhinz/vim-mix-format'
-Plug 'fatih/vim-go'
 Plug 'bronson/vim-trailing-whitespace'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'posva/vim-vue'
@@ -30,6 +30,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'keith/swift.vim'
 Plug 'mustache/vim-mustache-handlebars'
 Plug 'cakebaker/scss-syntax.vim'
+" Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 
 
@@ -343,7 +344,7 @@ command! -bang -nargs=* SR
   \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
   \    fzf#vim#with_preview({'down':'40%', 'sink': 'belowright split'}))
 
-command! Gs :Gstatus | :resize 15 | :set winfixheight
+command! Gs :Git | :resize 15 | :set winfixheight
 nnoremap <leader>g :Gs<cr>
 command! Gd :Gdiff
 command! GD :Gdiff
@@ -378,4 +379,34 @@ set t_ut=
 
 command! JSON :%!jq
 
+" golang
+
+" filetype plugin indent on
+
+" set autowrite
+
+" Go syntax highlighting
+let g:go_highlight_fields = 0
+let g:go_highlight_functions = 0
+let g:go_highlight_function_calls = 0
+let g:go_highlight_extra_types = 0
+let g:go_highlight_operators = 0
+
+" Auto formatting and importing
+let g:go_fmt_autosave = 0
+let g:go_fmt_command = "goimports"
+
+" Status line types/signatures
+" let g:go_auto_type_info = 0
+
+" Map keys for most used commands.
+" autocmd FileType go nmap <leader>t  <Plug>(go-test)
+
+"au filetype go inoremap <buffer> . .<C-x><C-o>
+
+" let g:go_def_mode='gopls'
+" let g:go_info_mode='gopls'
+
+
+"source ~/.vimrc.autocomplete
 source ~/.vimrc.local

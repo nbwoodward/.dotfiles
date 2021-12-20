@@ -61,6 +61,6 @@ git merge $1 -m "merge $1"
 git reset --soft $1
 }
 
-ZSH_THEME="nbw"
-
 export PATH="$PATH:~/.dotfiles/bin"
+
+ZSH_THEME="nbw"
