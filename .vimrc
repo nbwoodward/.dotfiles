@@ -349,7 +349,7 @@ command! -bang -nargs=* SR
   \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
   \    fzf#vim#with_preview({'down':'40%', 'sink': 'belowright split'}))
 
-command! Gs :Gstatus | :resize 15 | :set winfixheight
+command! Gs :Git | :resize 15 | :set winfixheight
 nnoremap <leader>g :Gs<cr>
 command! Gd :Gdiff
 command! GD :Gdiff
