@@ -8,6 +8,8 @@ if [[ $TMUX_PANE ]]; then
   TMUX_INDEX=$(tmux display -pt "${TMUX_PANE:?}" '#{pane_index}')
 fi
 
+export PATH="$HOME/.dotfiles/bin:$PATH"
+
 
 # Aliases
 alias ll='ls -alhFp'
