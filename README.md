@@ -10,8 +10,8 @@ MacOS:
 brew install neovim
 brew install tmux
 brew install reattach-to-user-namespace
-git clone https://github.com/nbwoodward/devfiles.git ~/devfiles
-cd devfiles
+git clone https://github.com/nbwoodward/.dotfiles.git ~/.dotfiles
+cd .dotfiles
 ./mklinks.sh
 echo "source ~/.bashrc" >> ~/.profile
 ```
@@ -20,16 +20,16 @@ Ubuntu:
 ```
 apt-get install neovim
 apt-get install tmux
-git clone https://github.com/nbwoodward/devfiles.git ~/devfiles
-cd devfiles
+git clone https://github.com/nbwoodward/.dotfiles.git ~/.dotfiles
+cd .dotfiles
 ./mklinks.sh
 ```
 
 CentOS:
 ```
 yum install neovim
-git clone https://github.com/nbwoodward/devfiles.git ~/devfiles
-cd devfiles
+git clone https://github.com/nbwoodward/.dotfiles.git ~/.dotfiles
+cd .dotfiles
 # As of writing this, yum doesn't have the right tmux version, so centos.sh downloads and compailes tmux 2.4
 ./centos.sh
 ./mklinks.sh
