@@ -1,0 +1,33 @@
+#!/usr/bin/python3
+
+import os
+
+os.system('git fetch --all')
+os.system('git remote prune origin')
+
+stream = os.popen('git branch -r')
+remoteBranches = stream.read().split()
+originBranches = [ b.replace('origin/', '') for b in remoteBranches if b.startswith('origin/')]
+
+stream = os.popen('git for-each-ref --format="%(refname:short)" refs/heads/')
+localBranches = stream.read().split()
+
+stream = os.popen('git branch --show-current')
+currentBranch = stream.read().strip()
+
+print("Local Branches:")
+for localBranch in localBranches:
+    if localBranch == currentBranch:
+        print(' * ', localBranch)
+    elif localBranch in originBranches:
+        print('   ', localBranch)
+    else:
+        print(' x ', localBranch)
+
+for localBranch in localBranches:
+    if localBranch not in originBranches and localBranch != currentBranch:
+        rm = input('\nRemove branch %s? ' % localBranch)
+        if rm == 'y':
+            os.system('git branch -D %s' % localBranch)
+        else:
+            print('Keeping', localBranch)

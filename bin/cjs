@@ -1,0 +1,11 @@
+#!/bin/sh
+
+GIT_ROOT=`git rev-parse --show-toplevel`
+JSFILES=`git diff --name-only --diff-filter d HEAD | grep '.\(.js\|.jsx\|ts\|tsx\)$' | grep -v '__generated__'`
+
+
+if [ -n "$JSFILES" ]; then
+  cd $GIT_ROOT && prettier --check `echo $JSFILES | xargs`
+else
+  echo "No recently changed JS files found"
+fi
