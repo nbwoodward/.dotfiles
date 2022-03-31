@@ -256,3 +256,4 @@ alias gocov="go test -tags=integration -coverprofile=/tmp/coverage.out ./... ; g
 # --glob: Additional conditions for search (in this case ignore everything in the .git/ folder)
 export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+source "/Users/nickwoodward/.rover/env"

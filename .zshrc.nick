@@ -76,7 +76,6 @@ function mf() {
     fi
 }
 
-
 export PATH="$PATH:~/.dotfiles/bin"
 
 ZSH_THEME="nbw"

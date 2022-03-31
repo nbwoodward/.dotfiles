@@ -350,6 +350,14 @@ set focus-events on
 set -w window-style 'fg=colour252,bg=colour235'
 set -w window-active-style 'fg=colour15,bg=black'
 
+bind-key -n C-S-Left swap-window -t -1\; select-window -t -1
+bind-key -n C-S-Right swap-window -t +1\; select-window -t +1
+
+bind-key -n S-Right next-window
+bind-key -n S-Left previous-window
+bind -n C-S-Right next-window
+bind -n C-S-Left previous-window
+
 bind-key n new-window \; set -w window-style 'fg=colour252,bg=colour235' \; set -w window-active-style 'fg=colour15,bg=black'
 
 #LOAD OSX SPECIFIC:

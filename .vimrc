@@ -13,7 +13,8 @@ Plug 'JuliaEditorSupport/julia-vim'
 Plug 'leafgarland/typescript-vim'
 Plug 'tpope/vim-fugitive'
 Plug 'pangloss/vim-javascript'
-Plug 'mxw/vim-jsx'
+" Plug 'mxw/vim-jsx'
+Plug 'maxmellon/vim-jsx-pretty'
 Plug 'jistr/vim-nerdtree-tabs'
 Plug 'majutsushi/tagbar'
 Plug 'jpalardy/vim-slime'
@@ -83,7 +84,7 @@ set smartcase "Ignores case when searching unless search term has uppercase
 set autoindent "Automatically indent on new line
 set smartindent "Smartly indent, autoindent should also be set.
 set scrolloff=5 "How many lines to keep below and above cursor when scrolling.
-set tabstop=2 "Default 4 spaces for tabs
+set tabstop=2 "Default 2 spaces for tabs
 set shiftwidth=2 "Default shift width
 set expandtab "Use spaces instead of tabs
 set smarttab "smartly use spaces and tabs.
@@ -125,7 +126,9 @@ command! C :mark z | :tabclose | :'z | normal zz
 
 nnoremap :W :w
 nnoremap :Q :q
+nnoremap <leader>q :q<cr>
 nnoremap <space> yiw
+nnoremap <leader>w :update<cr>
 
 "Uncomment to use - and _ to move lines up and down
 "nnoremap - ddp
@@ -174,7 +177,7 @@ function! RunTest()
     execute ":!tmux send -t " . targetPane . " 'npm run test' Enter"
   elseif expand("%") =~ "_test.go"
     execute ":!tmux send -t " . targetPane . " C-c"
-    execute ":!tmux send -t " . targetPane . " 'docker-compose run --rm test' Enter"
+    execute ":!tmux send -t " . targetPane . " 'go test ./...' Enter"
   else
     execute ":!tmux send -t " . targetPane . " C-c"
     execute ":!tmux send -t " . targetPane . " C-p Enter"
@@ -229,6 +232,8 @@ function! Format()
   execute ":w"
 
   if &ft =~ 'javascript'
+    call Preserve("!prettier --write '%:p'")
+  elseif &ft =~ 'typescript'
     call Preserve("!prettier --write '%:p'")
   elseif &ft =~ 'vue'
     call Preserve("!prettier --write '%:p'")
@@ -354,6 +359,7 @@ command! Gs :Git | :resize 15 | :set winfixheight
 nnoremap <leader>g :Gs<cr>
 command! Gd :Gdiff
 command! GD :Gdiff
+command! Gblame :Git blame
 nnoremap <leader>gd :Gdiff<cr>
 nnoremap <leader>d :Gvdiffsplit<cr>
 nnoremap <leader>gs :Gs<cr>
@@ -385,25 +391,29 @@ set t_ut=
 
 command! JSON :%!jq
 
+" Open definiton in preview window
+nnoremap gd :only<bar>vsplit<CR>gd
+
 " golang
+"
+autocmd FileType go setlocal tabstop=8 shiftwidth=8 noexpandtab
 
-" filetype plugin indent on
+filetype plugin indent on
 
-" set autowrite
-
-" Go syntax highlighting
-let g:go_highlight_fields = 0
-let g:go_highlight_functions = 0
-let g:go_highlight_function_calls = 0
-let g:go_highlight_extra_types = 0
-let g:go_highlight_operators = 0
+set autowrite
 
 " Auto formatting and importing
-let g:go_fmt_autosave = 0
-let g:go_fmt_command = "goimports"
+let g:go_fmt_autosave = 1
+
+" Syntax higlighting
+let g:go_highlight_fields = 1
+let g:go_highlight_functions = 1
+let g:go_highlight_function_calls = 1
+let g:go_highlight_extra_types = 1
+let g:go_highlight_operators = 1
 
 " Status line types/signatures
-" let g:go_auto_type_info = 0
+let g:go_auto_type_info = 1
 
 " Map keys for most used commands.
 " autocmd FileType go nmap <leader>t  <Plug>(go-test)
@@ -415,4 +425,7 @@ let g:go_fmt_command = "goimports"
 
 
 "source ~/.vimrc.autocomplete
+"
+
+
 source ~/.vimrc.local
