@@ -5,6 +5,9 @@ set t_ut=
 " Update with :PlugUpdate
 "
 call plug#begin('~/.vim/plugged')
+" COLORSCHEME
+Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
+
 Plug 'scrooloose/nerdtree' ", { 'on':  'NERDTreeToggle' }
 Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'christoomey/vim-tmux-navigator'
@@ -65,7 +68,7 @@ endif
 "
 " Template and default look/feel
 "
-colorscheme desert
+colorscheme catppuccin
 set background=dark
 hi DiffAdd guifg=NONE ctermfg=NONE guibg=#464632 ctermbg=238 gui=NONE cterm=NONE
 hi DiffChange guifg=NONE ctermfg=NONE guibg=#335261 ctermbg=239 gui=NONE cterm=NONE

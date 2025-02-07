@@ -1,0 +1,29 @@
+[colors.bright]
+black = "#7f7f7f"
+blue = "#5c5cff"
+cyan = "#00ffff"
+green = "#00ff00"
+magenta = "#ff76ff"
+red = "#ff0000"
+white = "#ffffff"
+yellow = "#ffff00"
+
+[colors.normal]
+black = "#000000"
+blue = "#7777ee"
+cyan = "#44c5c7"
+green = "#00c200"
+magenta = "#c955c7"
+red = "#c93333"
+white = "#e5e5e5"
+yellow = "#c7c400"
+
+[colors.primary]
+background = "#000000"
+foreground = "#ffffff"
+
+[font]
+size = 11.5
+
+[font.normal]
+family = "Monaco"

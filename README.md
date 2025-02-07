@@ -11,6 +11,7 @@ brew install neovim
 brew install tmux
 brew install reattach-to-user-namespace
 brew install zsh
+brew install asdf
 # set zsh as default shell
 chsh -s $(which zsh)
 git clone https://github.com/nbwoodward/.dotfiles.git ~/.dotfiles
