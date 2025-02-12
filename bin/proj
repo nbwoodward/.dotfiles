@@ -1,0 +1,59 @@
+#!/bin/bash
+
+# Check if the directory argument is provided
+if [ -z "$1" ]; then
+  echo "Usage: proj <project name>"
+  exit 1
+fi
+
+DIR="$1"
+
+# Navigate to the project directory
+PROJECT_DIR="$HOME/projects/$DIR"
+
+if [ ! -d "$PROJECT_DIR" ]; then
+  echo "Error: Directory '$PROJECT_DIR' does not exist."
+  exit 1
+fi
+
+cd "$PROJECT_DIR" || {
+  echo "Error: Failed to navigate to '$PROJECT_DIR'."
+  exit 1
+}
+
+# lol sleep so that the dang cd finishes
+sleep 0.1
+
+# Get the current tmux session and window name (or create if none)
+SESSION_NAME=$(tmux display-message -p '#S' 2>/dev/null)
+WINDOW_NAME=$(tmux display-message -p '#W' 2>/dev/null)
+
+if [ -z "$SESSION_NAME" ]; then
+    echo "No tmux session found."
+    exit 1
+fi
+
+if [ -z "$WINDOW_NAME" ]; then
+    echo "No tmux window found in session '$SESSION_NAME'."
+    exit 1
+fi
+
+# Send cd command to the left pane (pane 0)
+tmux send-keys -t "$SESSION_NAME:$DIR" "cd $PROJECT_DIR" C-m
+
+# Rename the tmux window (pane)
+tmux rename-window -t "$SESSION_NAME:$WINDOW_NAME" "$DIR" 2>/dev/null  #Renames the window. Ignores error if window doesn't exist.
+
+# Split the current pane horizontally
+tmux split-window -h 2>/dev/null #Ignores error if there is already a split.
+
+# Optional: Send a command to the new pane (e.g., start a specific program)
+tmux send-keys -t "$SESSION_NAME:$DIR" "nvim" C-m  #Replace your_command with the command you want. C-m sends Enter.
+
+# Switch to the right pane (index 1.  0 is left, 1 is right)
+tmux select-pane -t 1
+
+# Split the right pane vertically twice
+tmux split-window -v 2>/dev/null
+tmux select-pane -t 1
+tmux split-window -v 2>/dev/null
