@@ -47,8 +47,8 @@ tmux rename-window -t "$SESSION_NAME:$WINDOW_NAME" "$DIR" 2>/dev/null  #Renames 
 # Split the current pane horizontally
 tmux split-window -h 2>/dev/null #Ignores error if there is already a split.
 
-# Optional: Send a command to the new pane (e.g., start a specific program)
-tmux send-keys -t "$SESSION_NAME:$DIR" "nvim" C-m  #Replace your_command with the command you want. C-m sends Enter.
+# start nvim
+tmux send-keys -t "$SESSION_NAME:$DIR" "nvim" C-m
 
 # Switch to the right pane (index 1.  0 is left, 1 is right)
 tmux select-pane -t 1
@@ -57,3 +57,7 @@ tmux select-pane -t 1
 tmux split-window -v 2>/dev/null
 tmux select-pane -t 1
 tmux split-window -v 2>/dev/null
+
+tmux select-pane -t 4
+tmux send-keys -t "$SESSION_NAME:$DIR" ",c"
+tmux send-keys -t "$SESSION_NAME:$DIR" "C-h"
