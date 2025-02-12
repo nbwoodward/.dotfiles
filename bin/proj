@@ -20,9 +20,10 @@ cd "$PROJECT_DIR" || {
   echo "Error: Failed to navigate to '$PROJECT_DIR'."
   exit 1
 }
+tmux send-keys "cd $PROJECT_DIR" C-m
 
-# lol sleep so that the dang cd finishes
-sleep 0.1
+# ugh sleep so that the dang cd finishes
+sleep 0.5
 
 # Get the current tmux session and window name (or create if none)
 SESSION_NAME=$(tmux display-message -p '#S' 2>/dev/null)
@@ -38,17 +39,9 @@ if [ -z "$WINDOW_NAME" ]; then
     exit 1
 fi
 
-# Send cd command to the left pane (pane 0)
-tmux send-keys -t "$SESSION_NAME:$DIR" "cd $PROJECT_DIR" C-m
-
-# Rename the tmux window (pane)
-tmux rename-window -t "$SESSION_NAME:$WINDOW_NAME" "$DIR" 2>/dev/null  #Renames the window. Ignores error if window doesn't exist.
 
 # Split the current pane horizontally
 tmux split-window -h 2>/dev/null #Ignores error if there is already a split.
-
-# start nvim
-tmux send-keys -t "$SESSION_NAME:$DIR" "nvim" C-m
 
 # Switch to the right pane (index 1.  0 is left, 1 is right)
 tmux select-pane -t 1
@@ -59,5 +52,10 @@ tmux select-pane -t 1
 tmux split-window -v 2>/dev/null
 
 tmux select-pane -t 4
-tmux send-keys -t "$SESSION_NAME:$DIR" ",c"
-tmux send-keys -t "$SESSION_NAME:$DIR" "C-h"
+
+tmux send-keys "nvim" C-m
+tmux send-keys ",c"
+tmux send-keys "C-h"
+
+# Rename the tmux window (pane)
+tmux rename-window "$DIR" 2>/dev/null  #Renames the window. Ignores error if window doesn't exist.
