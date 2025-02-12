@@ -132,6 +132,7 @@ nnoremap :Q :q
 nnoremap <leader>q :q<cr>
 nnoremap <space> yiw
 nnoremap <leader>w :update<cr>
+nnoremap <leader>r "xyaw :R <C-R>x<cr>
 
 "Uncomment to use - and _ to move lines up and down
 "nnoremap - ddp
