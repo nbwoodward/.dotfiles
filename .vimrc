@@ -34,7 +34,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'keith/swift.vim'
 Plug 'mustache/vim-mustache-handlebars'
 Plug 'cakebaker/scss-syntax.vim'
-" Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 
 
@@ -428,8 +428,5 @@ let g:go_auto_type_info = 1
 " let g:go_info_mode='gopls'
 
 
-"source ~/.vimrc.autocomplete
-"
-
-
+source ~/.vimrc.coc
 source ~/.vimrc.local

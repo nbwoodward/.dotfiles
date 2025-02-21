@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #symlinks to go in home
-homefiles=(.tmux .tmux.conf .tmux.conf.local .tmux.conf.osx .tmux.conf.linux .vim .vimrc .bashrc .zshrc.nick, .alacritty.toml)
+homefiles=(.tmux .tmux.conf .tmux.conf.local .tmux.conf.osx .tmux.conf.linux .vim .vimrc .vimrc.coc .bashrc .zshrc.nick, .alacritty.toml)
 
 backup_dir=~/dev_bak
 

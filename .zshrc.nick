@@ -24,7 +24,7 @@ alias vb="nvim ~/.zshrc.nick"
 alias vbl="nvim ~/.zshrc.local"
 alias sb="source ~/.zshrc"
 alias hosts="cat /etc/hosts"
-alias pyserver="python -m SimpleHTTPServer 5555"
+alias pyserver="python3 -m http.server 5555"
 alias :q="exit"
 
 # Git aliases

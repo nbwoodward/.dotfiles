@@ -2,3 +2,4 @@
 .vim/.netrwhist
 tmux*.log
 .tmux/
+.vim/pack
