@@ -34,9 +34,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'keith/swift.vim'
 Plug 'mustache/vim-mustache-handlebars'
 Plug 'cakebaker/scss-syntax.vim'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
-
 
 set runtimepath^=~/.vim runtimepath+=~/.vim/after
 let &packpath = &runtimepath
@@ -132,7 +130,7 @@ nnoremap :Q :q
 nnoremap <leader>q :q<cr>
 nnoremap <space> yiw
 nnoremap <leader>w :update<cr>
-nnoremap <leader>r "xyaw :R <C-R>x<cr>
+nnoremap <leader>r yiw :R <C-R>"<cr>
 
 "Uncomment to use - and _ to move lines up and down
 "nnoremap - ddp
@@ -377,18 +375,6 @@ set diffopt+=iwhite
 command! GOC :GoCoverageToggle
 command! GOD :GoDiagnostics!
 
-"TESTING RG STUFF
-
-" --column: Show column number
-" --line-number: Show line number
-" --no-heading: Do not show file headings in results
-" --fixed-strings: Search term as a literal string
-" --ignore-case: Case insensitive search
-" --no-ignore: Do not respect .gitignore, etc...
-" --hidden: Search hidden files and folders
-" --follow: Follow symlinks
-" --glob: Additional conditions for search (in this case ignore everything in the .git/ folder)
-" --color: Search color options
 command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>), 1, <bang>0)
 
 set t_ut=
@@ -428,5 +414,4 @@ let g:go_auto_type_info = 1
 " let g:go_info_mode='gopls'
 
 
-source ~/.vimrc.coc
 source ~/.vimrc.local
