@@ -8,6 +8,20 @@ call plug#begin('~/.vim/plugged')
 " COLORSCHEME
 Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
 
+"CMP Autocomplete
+Plug 'neovim/nvim-lspconfig'
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-path'
+Plug 'hrsh7th/cmp-cmdline'
+Plug 'hrsh7th/nvim-cmp'
+Plug 'hrsh7th/cmp-vsnip'
+Plug 'hrsh7th/vim-vsnip'
+"zbirenbaum/copilot.lua"
+" COPILOT
+Plug 'zbirenbaum/copilot.lua'
+Plug 'zbirenbaum/copilot-cmp',
+
 Plug 'scrooloose/nerdtree' ", { 'on':  'NERDTreeToggle' }
 Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'christoomey/vim-tmux-navigator'
@@ -413,5 +427,7 @@ let g:go_auto_type_info = 1
 " let g:go_def_mode='gopls'
 " let g:go_info_mode='gopls'
 
+"Autocompletion
+source ~/.vimrc.cmp
 
 source ~/.vimrc.local
