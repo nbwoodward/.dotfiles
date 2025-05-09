@@ -1,16 +1,19 @@
 
 " If we're using CMP we should keep our column on the left open for linting
 " (prevents jump)
-set signcolumn=yes
+" set signcolumn=yes
 
 " Limit size of autocomplete box
-set pumheight=5
+" set pumheight=5
 
 lua <<EOF
 
+  vim.opt.signcolumn = "yes"
+  vim.opt.pumheight = 5
 
   -- Set up nvim-cmp.
-  local cmp = require'cmp'
+  local cmp = require('cmp')
+
 
   local ELLIPSIS_CHAR = '…'
   local MAX_LABEL_WIDTH = 35

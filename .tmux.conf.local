@@ -352,8 +352,8 @@ set -w window-active-style 'fg=colour15,bg=black'
 
 bind-key -n S-Right next-window
 bind-key -n S-Left previous-window
-bind -n C-S-Right next-window
-bind -n C-S-Left previous-window
+bind -n S-Right next-window
+bind -n S-Left previous-window
 
 bind-key -n C-S-Left swap-window -t -1\; select-window -t -1
 bind-key -n C-S-Right swap-window -t +1\; select-window -t +1

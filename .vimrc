@@ -27,11 +27,11 @@ Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'roxma/vim-tmux-clipboard'
 Plug 'JuliaEditorSupport/julia-vim'
-Plug 'leafgarland/typescript-vim'
 Plug 'tpope/vim-fugitive'
-Plug 'pangloss/vim-javascript'
+" Plug 'leafgarland/typescript-vim'
+" Plug 'pangloss/vim-javascript'
 " Plug 'mxw/vim-jsx'
-Plug 'maxmellon/vim-jsx-pretty'
+" Plug 'maxmellon/vim-jsx-pretty'
 Plug 'jistr/vim-nerdtree-tabs'
 Plug 'majutsushi/tagbar'
 Plug 'jpalardy/vim-slime'
@@ -48,6 +48,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'keith/swift.vim'
 Plug 'mustache/vim-mustache-handlebars'
 Plug 'cakebaker/scss-syntax.vim'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 call plug#end()
 
 set runtimepath^=~/.vim runtimepath+=~/.vim/after
@@ -193,7 +194,7 @@ function! RunTest()
     execute ":!tmux send -t " . targetPane . " 'npm run test' Enter"
   elseif expand("%") =~ "_test.go"
     execute ":!tmux send -t " . targetPane . " C-c"
-    execute ":!tmux send -t " . targetPane . " 'go test ./...' Enter"
+    execute ":!tmux send -t " . targetPane . " 'go test -v ./...' Enter"
   else
     execute ":!tmux send -t " . targetPane . " C-c"
     execute ":!tmux send -t " . targetPane . " C-p Enter"
@@ -366,6 +367,7 @@ command! -bang -nargs=* R
   \           : fzf#vim#with_preview('right:50%'),
   \   <bang>0)
 
+
 command! -bang -nargs=* SR
   \ call fzf#vim#grep(
   \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
@@ -429,5 +431,8 @@ let g:go_auto_type_info = 1
 
 "Autocompletion
 source ~/.vimrc.cmp
+
+" Syntax Highlighting
+source ~/.vimrc.treesitter
 
 source ~/.vimrc.local
