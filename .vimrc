@@ -248,12 +248,12 @@ function! Format()
   " Save it first
   execute ":w"
 
-  if &ft =~ 'javascript'
-    call Preserve("!prettier --write '%:p'")
-  elseif &ft =~ 'typescript'
-    call Preserve("!prettier --write '%:p'")
+  if &ft =~ 'javascript' || &ft =~ 'typescript'
+    " Using NPX here uses the local prettier version rather than a globally
+    " installed one
+    call Preserve("!npx prettier --write '%:p'")
   elseif &ft =~ 'vue'
-    call Preserve("!prettier --write '%:p'")
+    call Preserve("!prettier --write %:p")
   elseif &ft =~ 'elixir'
     call Preserve("!mix format '%:p'")
   endif

@@ -24,7 +24,6 @@ alias vb="nvim ~/.zshrc.nick"
 alias vbl="nvim ~/.zshrc.local"
 alias sb="source ~/.zshrc"
 alias hosts="cat /etc/hosts"
-alias pyserver="python3 -m http.server 5555"
 alias :q="exit"
 
 # Git aliases
@@ -42,6 +41,10 @@ alias chkb="git checkout -b"
 
 alias p3="python3"
 alias p2="python2.7"
+alias python="python3"
+alias pyserver="python3 -m http.server 5555"
+alias mkvenv="python3 -m venv .venv && source .venv/bin/activate"
+alias venv="source .venv/bin/activate"
 
 alias t="tmux a"
 alias tat="tmux a -t"
