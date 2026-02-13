@@ -97,22 +97,32 @@ lua <<EOF
   local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
   vim.lsp.config('gopls', {
+    cmd = { 'gopls' },
+    filetypes = { 'go', 'gomod', 'gowork', 'gotmpl' },
+    root_markers = { 'go.mod', 'go.work', '.git' },
     capabilities = capabilities,
   })
 
   vim.lsp.config('ts_ls', {
+    cmd = { 'typescript-language-server', '--stdio' },
+    filetypes = { 'javascript', 'javascriptreact', 'typescript', 'typescriptreact' },
+    root_markers = { 'tsconfig.json', 'jsconfig.json', 'package.json', '.git' },
     capabilities = capabilities,
   })
 
   vim.lsp.enable({'gopls', 'ts_ls'})
 
+  -- Show diagnostics in a floating window when cursor holds on a line
+  vim.diagnostic.config({
+    virtual_text = false,
+    float = {
+      source = true,
+    },
+  })
 
-
-  -- Set up Copilot
-  -- require("copilot").setup({
-    -- suggestion = { enabled = false },
-    -- panel = { enabled = false },
-  -- })
-
-  -- require("copilot_cmp").setup()
+  vim.api.nvim_create_autocmd('CursorHold', {
+    callback = function()
+      vim.diagnostic.open_float(nil, { focusable = false })
+    end,
+  })
 EOF

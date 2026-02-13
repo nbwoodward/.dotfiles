@@ -70,7 +70,7 @@ autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 
 
 "shorten how fast vim updates
-set updatetime=1000
+set updatetime=250
 
 "file encrypiton
 if !has('nvim')
@@ -410,6 +410,7 @@ set autowrite
 
 " Auto formatting and importing
 let g:go_fmt_autosave = 1
+let g:go_gopls_enabled = 0
 
 " Syntax higlighting
 let g:go_highlight_fields = 1
@@ -418,8 +419,6 @@ let g:go_highlight_function_calls = 1
 let g:go_highlight_extra_types = 1
 let g:go_highlight_operators = 1
 
-" Status line types/signatures
-let g:go_auto_type_info = 1
 
 " Map keys for most used commands.
 " autocmd FileType go nmap <leader>t  <Plug>(go-test)
