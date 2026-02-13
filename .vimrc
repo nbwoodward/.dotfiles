@@ -9,7 +9,6 @@ call plug#begin('~/.vim/plugged')
 Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
 
 "CMP Autocomplete
-Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-path'
@@ -142,7 +141,6 @@ command! C :mark z | :tabclose | :'z | normal zz
 
 nnoremap :W :w
 nnoremap :Q :q
-nnoremap <leader>q :q<cr>
 nnoremap <space> yiw
 nnoremap <leader>w :update<cr>
 nnoremap <leader>r yiw :R <C-R>"<cr>
@@ -382,6 +380,8 @@ nnoremap <leader>gd :Gdiff<cr>
 nnoremap <leader>d :Gvdiffsplit<cr>
 nnoremap <leader>gs :Gs<cr>
 nnoremap <leader>s :Gs<cr>
+
+nnoremap <leader>q :let @+ = substitute(expand('%:p'), '^' . trim(system('git rev-parse --show-toplevel')), '', '')<CR>
 
 " Set vimdiff to ignore whitespace
 set diffopt+=iwhite
