@@ -1,5 +1,6 @@
 .vim/plugged/*
 .vim/.netrwhist
 tmux*.log
-.tmux/
+.tmux
+.tmux/*
 .vim/pack
