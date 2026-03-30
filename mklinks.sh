@@ -63,9 +63,8 @@ cp nbw.zsh-theme $HOME/.oh-my-zsh/themes/robbyrussell.zsh-theme
 source $HOME/.zshrc
 
 
-# Install TMUX
-git clone https://github.com/gpakosz/.tmux
-ln -s -f .tmux/.tmux.conf $HOME/.tmux.conf
+# Install oh-my-tmux
+git clone https://github.com/gpakosz/.tmux ~/.dotfiles/.tmux
 
 
 # Install FZF
