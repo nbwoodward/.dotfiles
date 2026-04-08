@@ -1,7 +1,7 @@
 #!/bin/zsh
 
 #symlinks to go in home
-homefiles=(.tmux .tmux.conf .tmux.conf.local .tmux.conf.osx .tmux.conf.linux .vim .vimrc .vimrc.cmp .vimrc.treesitter .bashrc .zshrc.nick, .alacritty.toml)
+homefiles=(.tmux .tmux.conf .tmux.conf.local .tmux.conf.osx .tmux.conf.linux .vim .vimrc .vimrc.cmp .vimrc.treesitter .bashrc .zshrc.nick .alacritty.toml)
 
 backup_dir=~/dev_bak
 
@@ -48,17 +48,19 @@ fi
 ln -s ~/.dotfiles/.vim ~/.config/$f
 
 
-#Install oh my zsh
-sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+#Install oh my zsh (unattended, keeps existing .zshrc)
+sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended --keep-zshrc
 
 echo "# Local Zsh" >> $HOME/.zshrc.local
 
 echo "source $HOME/.zshrc.nick" >> $HOME/.zshrc
 echo "source $HOME/.zshrc.local" >> $HOME/.zshrc
 
+# Set ZSH_THEME to nbw in .zshrc
+sed -i '' 's/ZSH_THEME="robbyrussell"/ZSH_THEME="nbw"/' $HOME/.zshrc
+
 echo '" Local Vimrc' >> $HOME/.vimrc.local
 cp nbw.zsh-theme $HOME/.oh-my-zsh/themes
-cp nbw.zsh-theme $HOME/.oh-my-zsh/themes/robbyrussell.zsh-theme
 
 source $HOME/.zshrc
 
@@ -69,7 +71,7 @@ git clone https://github.com/gpakosz/.tmux ~/.dotfiles/.tmux
 
 # Install FZF
 git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-~/.fzf/install
+~/.fzf/install --all
 
 # Install RG on OSX
 brew install ripgrep

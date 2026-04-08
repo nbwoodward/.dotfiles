@@ -49,7 +49,7 @@ if [ "$color_prompt" = yes ]; then
     #export TERM=xterm-color
     export TERM=screen-256color
 
-    export GREP_OPTIONS='--color=auto' GREP_COLOR='1;32'
+    export GREP_COLOR='1;32'
     export CLICOLOR=1
     export LSCOLORS=ExFxCxDxBxegedabagacad
 
@@ -132,7 +132,7 @@ alias hosts="cat /etc/hosts"
 alias updatedb="sudo /usr/libexec/locate.updatedb"
 alias cp="cp -r"
 alias rrsync="rsync --rsh='ssh' --progress -av"
-alias pyserver="python -m SimpleHTTPServer 8000"
+alias pyserver="python3 -m http.server 8000"
 
 #Some git aliases
 alias ggb="git log --decorate --graph --pretty --pretty=short --abbrev-commit"
@@ -164,9 +164,6 @@ alias p2="python2.7"
 alias en="source .env"
 alias de="deactivate"
 
-alias j6="julia6"
-alias j7="julia7"
-alias j1="julia1"
 
 #TMUX
 alias t="tmux a"
@@ -210,17 +207,6 @@ function makerun(){
 	./$*
 }
 
-function svnsize() {
-svn list -vR $1|awk '{if ($3 !="") sum+=$3; i++} END {print "\ntotal size= " sum/1024000" MB" "\nnumber of files= " i}'
-
-}
-
-
-function grek(){
-  echo grep -rl --exclude *.svn* $1 ${2:-.}
-  grep -rl --exclude *.svn* $1 ${2:-.}
-}
-
 
 #Export default NODE_ENV
 export NODE_ENV="development"
@@ -242,7 +228,7 @@ fi
 alias listening='lsof -iTCP -sTCP:LISTEN -n -P'
 
 # Docker
-alias dc="docker-compose"
+alias dc="docker compose"
 
 # Go
 alias gocov="go test -tags=integration -coverprofile=/tmp/coverage.out ./... ; go tool cover -html=/tmp/coverage.out"

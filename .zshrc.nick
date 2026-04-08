@@ -79,10 +79,6 @@ function mf() {
     fi
 }
 
-export PATH="$PATH:~/.dotfiles/bin"
-
 # Add asdf path and autocompletions
 export PATH="${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH"
-. <(asdf completion bash)
-
-ZSH_THEME="nbw"
+. <(asdf completion zsh)
