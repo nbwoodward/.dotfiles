@@ -1,7 +1,7 @@
 #!/bin/zsh
 
 #symlinks to go in home
-homefiles=(.tmux .tmux.conf .tmux.conf.local .tmux.conf.osx .tmux.conf.linux .vim .vimrc .vimrc.cmp .vimrc.treesitter .bashrc .zshrc.nick .alacritty.toml)
+homefiles=(.tmux .tmux.conf .tmux.conf.local .tmux.conf.osx .tmux.conf.linux .vim .vimrc .vimrc.cmp .vimrc.treesitter .bashrc .zshrc .alacritty.toml)
 
 backup_dir=~/dev_bak
 
@@ -52,12 +52,6 @@ ln -s ~/.dotfiles/.vim ~/.config/$f
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended --keep-zshrc
 
 echo "# Local Zsh" >> $HOME/.zshrc.local
-
-echo "source $HOME/.zshrc.nick" >> $HOME/.zshrc
-echo "source $HOME/.zshrc.local" >> $HOME/.zshrc
-
-# Set ZSH_THEME to nbw in .zshrc
-sed -i '' 's/ZSH_THEME="robbyrussell"/ZSH_THEME="nbw"/' $HOME/.zshrc
 
 echo '" Local Vimrc' >> $HOME/.vimrc.local
 cp nbw.zsh-theme $HOME/.oh-my-zsh/themes

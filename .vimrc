@@ -66,7 +66,8 @@ let g:NERDTreeWinPos = "right"
 let g:NERDTreeIgnore = ['^node_modules$']
 autocmd VimEnter *  wincmd p "when opening vim with a file, focuses on buffer
 autocmd VimEnter {}  wincmd p "when opening empty vim , focuses on nerdtree
-autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif "Not sure what this does
+autocmd BufEnter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif "Close vim if NERDTree is the only window left
+autocmd BufEnter NERD_tree_* silent NERDTreeRefresh
 
 
 "shorten how fast vim updates
