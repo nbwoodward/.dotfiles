@@ -373,7 +373,6 @@ command! -bang -nargs=* SR
   \    fzf#vim#with_preview({'down':'40%', 'sink': 'belowright split'}))
 
 command! Gs :Git | :resize 15 | :set winfixheight
-nnoremap <leader>g :Gs<cr>
 command! Gd :Gdiff
 command! GD :Gdiff
 command! Gblame :Git blame
@@ -398,8 +397,9 @@ set t_ut=
 
 command! JSON :%!jq
 
-" Open definiton in preview window
-nnoremap gd :only<bar>vsplit<CR>gd
+" Open definition in a vertical split
+nnoremap ff <cmd>lua vim.lsp.buf.definition()<cr>
+nnoremap fs <cmd>split <bar> lua vim.lsp.buf.definition()<cr>
 
 " golang
 "
